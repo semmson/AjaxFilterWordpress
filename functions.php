@@ -149,6 +149,7 @@ function _s_scripts() {
 }
 // add_action( 'wp_enqueue_scripts', '_s_scripts' );
 
+
 /**
  * Implement the Custom Header feature.
  */
@@ -169,6 +170,8 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+
+
 /**
  * Load Jetpack compatibility file.
  */
@@ -182,3 +185,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+
+function semmson_scripts() {
+	wp_enqueue_script("script", get_template_directory_uri()."/assets/main.min.js", [],false);
+	wp_enqueue_style("style", get_template_directory_uri()."/assets/main.css", [],false);
+}
+
+add_action("wp_enqueue_scripts","semmson_scripts");

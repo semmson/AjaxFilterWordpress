@@ -2,4 +2,8 @@ body {
     background-image: url("../../screenshot.jpg");
 }
 
+h1 {
+    font-size: 4em;
+}
+
 @import "components/hero";
