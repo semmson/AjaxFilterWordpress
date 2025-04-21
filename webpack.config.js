@@ -9,7 +9,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, "assets"),
     filename: "[name].min.js",
-    clean: true,
+    clean: true, //automatically clears assets folder when run
   },
   devtool: "source-map",
   module: {
