@@ -187,9 +187,23 @@ if ( class_exists( 'WooCommerce' ) ) {
 }
 
 
-function semmson_scripts() {
+/* function semmson_scripts() {
 	wp_enqueue_script("script", get_template_directory_uri()."/assets/main.min.js", [],false);
 	wp_enqueue_style("style", get_template_directory_uri()."/assets/main.css", [],false);
+} */
+
+function semmson_scripts() {
+/* 	wp_enqueue_style("main", get_template_directory_uri()."/assets//css/main.css", [],false);
+	wp_enqueue_style("noscript", get_template_directory_uri()."/assets//css/noscript.css", [],false);
+
+	wp_enqueue_script("jquery", get_template_directory_uri()."/assets/js/jquery.min.js",[],false,true);
+	wp_enqueue_script("jquery-scrollex", get_template_directory_uri()."/assets/js/jquery.scrollex.min.js",['jquery'],false,true);
+	wp_enqueue_script("jquery-scrolly", get_template_directory_uri()."/assets/js/jquery.scrolly.min.js",['jquery-scrollex'],false,true);
+	wp_enqueue_script("browser", get_template_directory_uri()."/assets/js/browser.min.js",['jquery-scrolly'],false,true);
+	wp_enqueue_script("breakpoints", get_template_directory_uri()."/assets/js/breakpoints.min.js",[],false,true);
+	wp_enqueue_script("util", get_template_directory_uri()."/assets/js/util.js",[],false,true);
+	wp_enqueue_script("main", get_template_directory_uri()."/assets/js/main.js",[],false,true);
+	 */
 }
 
 add_action("wp_enqueue_scripts","semmson_scripts");
