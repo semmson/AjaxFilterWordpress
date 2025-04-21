@@ -193,3 +193,5 @@ function semmson_scripts() {
 }
 
 add_action("wp_enqueue_scripts","semmson_scripts");
+
+//funny com
