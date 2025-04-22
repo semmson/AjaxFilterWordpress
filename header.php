@@ -24,3 +24,6 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
+<!-- Navbar _____________ -->
+<?php is_front_page() ? : get_template_part("template-parts/navbar"); ?>

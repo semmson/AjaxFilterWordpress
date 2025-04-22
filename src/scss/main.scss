@@ -1,9 +1,12 @@
-body {
-    background-image: url("../../screenshot.jpg");
-}
+@import "./default/default";
+@import "./default/noscript";
+
+/* body {
+    background-image: url("images/screenshot.jpg");
+} */
 
 h1 {
     font-size: 4em;
 }
 
-@import "components/hero";
+

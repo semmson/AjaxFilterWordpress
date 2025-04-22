@@ -9,7 +9,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, "assets"),
     filename: "[name].min.js",
-    clean: true, //automatically clears assets folder when run
+    clean: true,
   },
   devtool: "source-map",
   module: {
@@ -29,7 +29,7 @@ const config = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         type: "asset/resource",
         generator: {
           filename: "./img/[name][ext]",

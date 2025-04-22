@@ -1,0 +1,11 @@
+<!-- Header -->
+<header id="header">
+    <a href="/" class="title">Semmson</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generic.html" class="active">Generic</a></li>
+            <li><a href="elements.html">Elements</a></li>
+        </ul>
+    </nav>
+</header>

@@ -25,6 +25,14 @@
 	</div>
 </footer>
 
+<script src="<?=get_template_directory_uri()?>/src/js/jquery.min.js"></script>
+<script src="<?=get_template_directory_uri()?>/src/js/jquery.scrollex.min.js"></script>
+<script src="<?=get_template_directory_uri()?>/src/js/jquery.scrolly.min.js"></script>
+<script src="<?=get_template_directory_uri()?>/src/js/browser.min.js"></script>
+<script src="<?=get_template_directory_uri()?>/src/js/breakpoints.min.js"></script>
+<script src="<?=get_template_directory_uri()?>/src/js/util.js"></script>
+<script src="<?=get_template_directory_uri()?>/src/js/main.js"></script>
+
 <?php wp_footer(); ?>
 
 </body>
