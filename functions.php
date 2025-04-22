@@ -47,11 +47,11 @@ function _s_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
+	/* register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', '_s' ),
 		)
-	);
+	); */
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
@@ -195,3 +195,7 @@ function semmson_scripts() {
 add_action("wp_enqueue_scripts","semmson_scripts");
 
 //funny com
+function register_main_menu() {
+	register_nav_menu("main-menu-hyperspace","main hyperspace menu");
+}
+add_action("init","register_main_menu");
