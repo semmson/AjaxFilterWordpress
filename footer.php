@@ -25,7 +25,9 @@
 	</div>
 </footer>
 
-<script src="<?=get_template_directory_uri()?>/src/js/jquery.min.js"></script>
+
+<!-- No Need to use src jquery manually, bc wordpress has built in Jquery (see functions.php) -->
+<!-- <script src="<?=get_template_directory_uri()?>/src/js/jquery.min.js"></script> -->
 <script src="<?=get_template_directory_uri()?>/src/js/jquery.scrollex.min.js"></script>
 <script src="<?=get_template_directory_uri()?>/src/js/jquery.scrolly.min.js"></script>
 <script src="<?=get_template_directory_uri()?>/src/js/browser.min.js"></script>

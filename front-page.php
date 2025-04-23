@@ -21,13 +21,37 @@
     <section id="intro" class="wrapper style1 fullscreen fade-up">
         <div class="inner">
             <h1>Hyperspace</h1>
-            <p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br />
-                and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
+            <p>A responsive template working with Webpack 5, TS + SASS<br/>
+            Design Template by <a href="http://html5up.net">HTML5 UP</a>
             <ul class="actions">
                 <li><a href="#one" class="button scrolly">Learn more</a></li>
+                <li><a id="request_btn" class="button scrolly">Make AJAX Request</a></li>
             </ul>
         </div>
     </section>
+
+    <script>
+        myData = {
+            user1: "This is user1 data",
+            user2: "This is user2 data"
+        }
+
+        const request_btn = document.getElementById("request_btn")
+        request_btn.addEventListener("click", () => {
+            console.log("clicked: ", request_btn);
+            jQuery.ajax({
+                type: "post",
+                url: `${window.location.origin}/wp-admin/admin-ajax.php`,
+                data: {
+                    action: "semmson_request",
+                    ajax_data: myData
+                }, 
+                complete: function(response) {
+                    console.log(response.responseJSON);
+                }                      
+            })
+        })
+    </script>
 
     <!-- One -->
     <section id="one" class="wrapper style2 spotlights">

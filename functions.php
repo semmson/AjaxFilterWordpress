@@ -186,16 +186,42 @@ if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
 
-
+// enqueue CSS and Javascript (jquery)
 function semmson_scripts() {
+
 	wp_enqueue_style("style", get_template_directory_uri()."/assets/main.css", [],false);
+	
 	wp_enqueue_script("script", get_template_directory_uri()."/assets/main.min.js", [],false,true);
+	wp_enqueue_script("jquery");
 }
 
 add_action("wp_enqueue_scripts","semmson_scripts");
 
-//funny com
+// Register Nav
 function register_main_menu() {
 	register_nav_menu("main-menu-hyperspace","main hyperspace menu");
 }
 add_action("init","register_main_menu");
+
+
+// AJAX request handling
+
+function when_semmson_request_happens() {
+	$request_data = $_POST["ajax_data"];
+
+	// PROCESS AJAX REQUEST DATA HERE---------
+
+
+	$request_data["user1"] = "Server response for user1";
+	$request_data["user2"] = "Server response for user2";
+
+	// ----------------------------------------
+
+	wp_send_json($request_data);
+}
+
+// for users that are logged in to wp-admin
+add_action("wp_ajax_semmson_request", "when_semmson_request_happens");
+
+// for all other non logged-in users
+add_action("wp_ajax_nopriv_semmson_request", "when_semmson_request_happens");
