@@ -27,6 +27,33 @@
                 <li><a href="#one" class="button scrolly">Learn more</a></li>
                 <li><a id="request_btn" class="button scrolly">Make AJAX Request</a></li>
             </ul>
+
+
+            <ul class="actions">
+                <li class="active" data-filter="*"><a class="button">All</a></li>
+                <?php
+                $terms = get_terms("difficulty");
+                foreach($terms as $term) { ?>
+                <li data-filter="<?= $term->slug ?>"><a class="button"><?= $term->name ?></a></li>
+                <?php } ?>
+            </ul>
+
+            <?php 
+            
+            $args = array(
+                "post-type" => "transcription",
+                "posts-per-page" => 4,
+            );
+            $query = new WP_Query($args);
+                while($query->have_posts()) {
+                    $query->the_post();
+
+                    $the_title();
+                    $the_content(); 
+                }
+            ?>
+
+
         </div>
     </section>
 
@@ -131,7 +158,7 @@
                 </section>
             </div>
             <ul class="actions">
-                <li><a href="generic.html" class="button">Learn more</a></li>
+                <li><a href="/" class="button">Learn more</a></li>
             </ul>
         </div>
     </section>
