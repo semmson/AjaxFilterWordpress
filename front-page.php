@@ -20,65 +20,72 @@
     <!-- Intro -->
     <section id="intro" class="wrapper style1 fullscreen fade-up">
         <div class="inner">
-            <h1>Hyperspace</h1>
-            <p>A responsive template working with Webpack 5, TS + SASS<br/>
+            <h1>Semmson</h1>
+            <p>Welcome<br/>
             Design Template by <a href="http://html5up.net">HTML5 UP</a>
             <ul class="actions">
                 <li><a href="#one" class="button scrolly">Learn more</a></li>
                 <li><a id="request_btn" class="button scrolly">Make AJAX Request</a></li>
             </ul>
 
+            
+
 
             <ul class="actions">
-                <li class="active" data-filter="*"><a class="button">All</a></li>
+                <li><a data-filter="all" class="active button filter_button">All</a></li>
                 <?php
-                $terms = get_terms("difficulty");
+                $terms = get_terms("difficulty"); //returns all difficulties
                 foreach($terms as $term) { ?>
-                <li data-filter="<?= $term->slug ?>"><a class="button"><?= $term->name ?></a></li>
+                <li><a data-filter="<?= $term->slug ?>" class="button filter_button"><?= $term->name ?></a></li>
                 <?php } ?>
             </ul>
 
-            <?php 
             
-            $args = array(
-                "post-type" => "transcription",
-                "posts-per-page" => 4,
-            );
-            $query = new WP_Query($args);
-                while($query->have_posts()) {
-                    $query->the_post();
-
-                    $the_title();
-                    $the_content(); 
-                }
-            ?>
-
-
         </div>
     </section>
 
-    <script>
-        myData = {
-            user1: "This is user1 data",
-            user2: "This is user2 data"
-        }
 
-        const request_btn = document.getElementById("request_btn")
-        request_btn.addEventListener("click", () => {
-            console.log("clicked: ", request_btn);
-            jQuery.ajax({
-                type: "post",
-                url: `${window.location.origin}/wp-admin/admin-ajax.php`,
-                data: {
-                    action: "semmson_request",
-                    ajax_data: myData
-                }, 
-                complete: function(response) {
-                    console.log(response.responseJSON);
-                }                      
-            })
-        })
-    </script>
+    <section id="transcriptions" class="wrapper style3 fade-up">
+        <div class="inner">
+            <div class="transcriptions">
+            <?php 
+                
+                $args = array(
+                    "post_type" => "transcription"
+                );
+                $query = new WP_Query($args);
+                
+                
+                while($query->have_posts()){
+                    $query->the_post();
+
+                    $tDifficulties = get_the_terms($post->ID,'difficulty');
+                    
+                    
+                    
+                    $difficulty_slugs = ""; 
+                    foreach($tDifficulties as $tDifficulty) {
+                        $difficulty_slugs .= $tDifficulty->slug . " ";
+
+                    } ?>
+                    
+                    
+                    <section class="<?= $difficulty_slugs?>">
+                        <img class="" src="<?php the_post_thumbnail_url()?>">
+                        <div>
+                            <h4><?= $post->post_title?></h4>
+                            <h4><?= $post->post_content?></h4>
+                            <span class="icon solid major fa-code"></span>
+                        </div>
+                    </section>
+                <?php } ?>  
+            </div>
+            <ul class="actions">
+                <li><a href="/" class="button">Learn more</a></li>
+            </ul>
+        </div>
+    </section>
+
 
     <!-- One -->
     <section id="one" class="wrapper style2 spotlights">
@@ -162,6 +169,7 @@
             </ul>
         </div>
     </section>
+    
 
     <!-- Three -->
     <section id="three" class="wrapper style1 fade-up">

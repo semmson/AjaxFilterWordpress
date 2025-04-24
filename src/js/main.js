@@ -168,7 +168,7 @@
 			});
 
 	// Features.
-		$('.features')
+		$('.features,.transcriptions')
 			.scrollex({
 				mode: 'middle',
 				top: '-20vh',
@@ -186,5 +186,7 @@
 
 				}
 			});
+
+		
 
 })(jQuery);

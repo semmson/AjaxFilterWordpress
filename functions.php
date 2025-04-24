@@ -188,11 +188,10 @@ if ( class_exists( 'WooCommerce' ) ) {
 
 // enqueue CSS and Javascript (jquery)
 function semmson_scripts() {
-
+	/* wp_enqueue_script('jquery'); */
 	wp_enqueue_style("style", get_template_directory_uri()."/assets/main.css", [],false);
 	
 	wp_enqueue_script("script", get_template_directory_uri()."/assets/main.min.js", [],false,true);
-	wp_enqueue_script("jquery");
 }
 
 add_action("wp_enqueue_scripts","semmson_scripts");
