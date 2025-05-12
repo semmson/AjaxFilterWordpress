@@ -6,6 +6,7 @@
         <nav>
             <ul>
                 <li><a href="#intro">Welcome</a></li>
+                <li><a href="#transcriptions">Transcriptions</a></li>
                 <li><a href="#one">Who we are</a></li>
                 <li><a href="#two">What we do</a></li>
                 <li><a href="#three">Get in touch</a></li>
@@ -26,27 +27,45 @@
             <ul class="actions">
                 <li><a href="#one" class="button scrolly">Learn more</a></li>
                 <li><a id="request_btn" class="button scrolly">Make AJAX Request</a></li>
-            </ul>
-
-            
-
-
-            <ul class="actions">
-                <li><a data-filter="all" class="active button filter_button">All</a></li>
-                <?php
-                $terms = get_terms("difficulty"); //returns all difficulties
-                foreach($terms as $term) { ?>
-                <li><a data-filter="<?= $term->slug ?>" class="button filter_button"><?= $term->name ?></a></li>
-                <?php } ?>
-            </ul>
-
-            
+            </ul>    
         </div>
     </section>
 
 
     <section id="transcriptions" class="wrapper style3 fade-up">
         <div class="inner">
+            <ul class="actions difficulties">
+                <li><a data-filter="all" class="active button filter_button">All</a></li>
+                <?php
+
+
+                $args = array(
+                    'taxonomy'   => 'difficulty', 
+                    /* 'hide_empty' => false, */
+                    'orderby'    => 'id',
+                    'order'      => 'ASC',
+                );
+                $difficulties = get_terms($args);
+                foreach($difficulties as $difficulty) { ?>
+                <li><a data-filter="<?= $difficulty->slug ?>" class="button filter_button"><?= $difficulty->name . " " . $difficulty->count ?></a></li>
+                <?php } ?>
+            </ul>
+            <ul class="actions genres">
+                <li><a data-filter="all" class="active button filter_button">All</a></li>
+                <?php
+
+
+                $args = array(
+                    'taxonomy'   => 'genre', 
+                    /* 'hide_empty' => false, */
+                    'orderby'    => 'id',
+                    'order'      => 'ASC',
+                );
+                $genres = get_terms($args);
+                foreach($genres as $genre) { ?>
+                <li><a data-filter="<?= $genre->slug ?>" class="button filter_button"><?= $genre->name . " " . $genre->count ?></a></li>
+                <?php } ?>
+            </ul>
             <div class="transcriptions">
             <?php 
                 
@@ -60,24 +79,33 @@
                     $query->the_post();
 
                     $tDifficulties = get_the_terms($post->ID,'difficulty');
+                    $tGenres = get_the_terms($post->ID,'genre');
+                    $slugs_to_classes = ""; 
+                    if($tDifficulties) {
+                        foreach($tDifficulties as $difficulty) {
+                            $slugs_to_classes .= $difficulty->slug . " ";
+    
+                        }
+                    }
+                    if($tGenres) {
+                        foreach($tGenres as $genre) {
+                            $slugs_to_classes .= $genre->slug . " ";
+    
+                        }
+                    }
+                    ?>
                     
                     
+                    <div class="transcription <?= $slugs_to_classes?>">
+                        <a href="<?=the_permalink()?>">
+                            <img src="<?php the_post_thumbnail_url()?>">
+                            <div class="post-title"><?= $post->post_title?></div>
+                        </a>
+                        
+                            
+                        <!--  <span class="icon solid major fa-code"></span> -->
                     
-                    $difficulty_slugs = ""; 
-                    foreach($tDifficulties as $tDifficulty) {
-                        $difficulty_slugs .= $tDifficulty->slug . " ";
-
-                    } ?>
-                    
-                    
-                    <section class="<?= $difficulty_slugs?>">
-                        <img class="" src="<?php the_post_thumbnail_url()?>">
-                        <div>
-                            <h4><?= $post->post_title?></h4>
-                            <h4><?= $post->post_content?></h4>
-                            <span class="icon solid major fa-code"></span>
-                        </div>
-                    </section>
+                    </div>
                 <?php } ?>  
             </div>
             <ul class="actions">

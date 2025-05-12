@@ -35,7 +35,7 @@ $(function(){
             let datafilter = button.attr('data-filter');
             
             if(datafilter!=undefined) {
-                $('.transcriptions > section').each(function(){
+                $('.transcriptions > .transcription').each(function(){
                     let transcription = $(this);
                     if(transcription.hasClass(datafilter) || datafilter === "all") {
                         transcription.removeClass("hidden");
